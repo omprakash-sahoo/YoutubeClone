@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const SideBar = () => {
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  if (!isMenuOpen) return null;
   return (
     <div className="ml-6">
       <ul className="">
@@ -69,7 +72,7 @@ const SideBar = () => {
         </li>
         <hr className="text-gray-200"></hr>
       </ul>
-      <span className="flex mt-4 p-2 hover:bg-gray-100 rounded-lg w-[180px]">
+      <span className="flex mt-4 p-2 hover:bg-gray-100 rounded-lg w-[180px] font-semibold">
         You
         <svg
           xmlns="http://www.w3.org/2000/svg"

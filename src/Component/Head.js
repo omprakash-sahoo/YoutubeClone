@@ -1,24 +1,32 @@
 import React from "react";
 import { LOGO_IMG } from "../utils/constant";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/appSlice";
 
 const Head = () => {
+  const dispatch = useDispatch();
+  const handleToggleMenu = () => {
+    dispatch(toggleMenu());
+  };
   return (
     <div className="grid grid-flow-col">
       <div className="flex justify-start text-center gap-2 p-4 col-span-1">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6 my-auto ml-4"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
+        <button className="cursor-pointer" onClick={() => handleToggleMenu()}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-6 my-auto ml-4"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
         <img className="h-10 w-23 my-auto" alt="Logo" src={LOGO_IMG} />
       </div>
       <div className="flex justify-center text-center col-span-8">
@@ -43,7 +51,7 @@ const Head = () => {
             />
           </svg>
         </button>
-        <div className="my-auto mx-2 p-2 bg-gray-200  rounded-full">
+        <div className="my-auto mx-2 p-2 bg-gray-100  rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -60,9 +68,9 @@ const Head = () => {
           </svg>
         </div>
       </div>
-      <div className="flex justify-evenly gap-4 col-span-4">
-        <div className="flex items-center text-center">
-          <button className="flex bg-gray-200 p-[8px] rounded-full mr-4">
+      <div className="flex justify-end text-center gap-4 col-span-4">
+        <div className="my-auto">
+          <button className="flex bg-gray-100 p-[8px] rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -79,20 +87,26 @@ const Head = () => {
             </svg>
             Create
           </button>
+        </div>
+        <div className="my-auto">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            fill="currentColor"
+            height="24"
             viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-6 mr-4"
+            width="24"
+            focusable="false"
+            aria-hidden="true"
+            className="pointer-events-none size-6"
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-            />
+              clipRule="evenodd"
+              d="m13.497 4.898.053.8.694.4C15.596 6.878 16.5 8.334 16.5 10v2.892c0 .997.27 1.975.784 2.83L18.35 17.5H5.649l1.067-1.778c.513-.855.784-1.833.784-2.83V10c0-1.666.904-3.122 2.256-3.902l.694-.4.053-.8c.052-.78.703-1.398 1.497-1.398.794 0 1.445.618 1.497 1.398ZM6 10c0-2.224 1.21-4.165 3.007-5.201C9.11 3.236 10.41 2 12 2c1.59 0 2.89 1.236 2.993 2.799C16.79 5.835 18 7.776 18 10v2.892c0 .725.197 1.436.57 2.058l1.521 2.535c.4.667-.08 1.515-.857 1.515H15c0 .796-.316 1.559-.879 2.121-.562.563-1.325.879-2.121.879s-1.559-.316-2.121-.879C9.316 20.56 9 19.796 9 19H4.766c-.777 0-1.257-.848-.857-1.515L5.43 14.95c.373-.622.57-1.333.57-2.058V10Zm4.5 9c0 .398.158.78.44 1.06.28.282.662.44 1.06.44s.78-.158 1.06-.44c.282-.28.44-.662.44-1.06h-3Z"
+              fillRule="evenodd"
+            ></path>
           </svg>
+        </div>
+        <div className="my-auto mr-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
