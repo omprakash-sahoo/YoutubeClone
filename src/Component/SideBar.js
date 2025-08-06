@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router";
 
 const SideBar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
@@ -7,27 +8,29 @@ const SideBar = () => {
   return (
     <div className="ml-6">
       <ul className="">
-        <li className="p-2 bg-gray-100 rounded-lg w-[180px]">
-          <a href="#" className="flex">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-              focusable="false"
-              aria-hidden="true"
-              className="pointer-events-none size-6"
-            >
-              <path
-                clipRule="evenodd"
-                d="M22.146 11.146a.5.5 0 01-.353.854H20v7.5a1.5 1.5 0 01-1.5 1.5H14v-8h-4v8H5.5A1.5 1.5 0 014 19.5V12H2.207a.5.5 0 01-.353-.854L12 1l10.146 10.146Z"
-                fillRule="evenodd"
-              ></path>
-            </svg>
-            <span className="ml-2 font-semibold">Home</span>
-          </a>
-        </li>
+        <Link to="/">
+          <li className="p-2 bg-gray-100 rounded-lg w-[180px]">
+            <div className="flex">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                focusable="false"
+                aria-hidden="true"
+                className="pointer-events-none size-6"
+              >
+                <path
+                  clipRule="evenodd"
+                  d="M22.146 11.146a.5.5 0 01-.353.854H20v7.5a1.5 1.5 0 01-1.5 1.5H14v-8h-4v8H5.5A1.5 1.5 0 014 19.5V12H2.207a.5.5 0 01-.353-.854L12 1l10.146 10.146Z"
+                  fillRule="evenodd"
+                ></path>
+              </svg>
+              <span className="ml-2 font-semibold">Home</span>
+            </div>
+          </li>
+        </Link>
         <li className="p-2 hover:bg-gray-100 rounded-lg w-[180px]">
           <a href="#" className="flex">
             <svg

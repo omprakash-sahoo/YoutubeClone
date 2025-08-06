@@ -29,10 +29,8 @@ function timeAgo(dateString) {
 const VideoCard = ({ info }) => {
   const { snippet, statistics } = info;
   const { title, thumbnails, localized, channelTitle } = snippet;
-  console.log(info);
-  // const { thumbnails } = snippet;
   return (
-    <div className="h-full w-[401px]">
+    <div className="h-full w-[401px] mt-4">
       <div>
         <img
           className="h-[226px] w-[401px] object-cover rounded-3xl p-2 hover:rounded-none transition-all duration-500"

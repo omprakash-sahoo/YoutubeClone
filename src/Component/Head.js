@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LOGO_IMG } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { YOUTUBE_SERCH_API } from "../utils/constant";
 
 const Head = () => {
   const dispatch = useDispatch();
   const handleToggleMenu = () => {
     dispatch(toggleMenu());
   };
+
+  const [inputSerch, setInputSerch] = useState("");
+  const [searchValue, setSearchValue] = useState([]);
+  const [hideSearchDiv, setHideSearchDiv] = useState(false);
+
+  const getSearchValue = async () => {
+    const data = await fetch(YOUTUBE_SERCH_API + inputSerch);
+    const json = await data.json();
+    setSearchValue(json[1]);
+  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getSearchValue();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [inputSerch]);
   return (
     <div className="grid grid-flow-col">
       <div className="flex justify-start text-center gap-2 p-4 col-span-1">
@@ -29,11 +49,14 @@ const Head = () => {
         </button>
         <img className="h-10 w-23 my-auto" alt="Logo" src={LOGO_IMG} />
       </div>
-      <div className="flex justify-center text-center col-span-8">
+      <div className="flex justify-center text-center col-span-8 relative">
         <input
           type="text"
           placeholder="Search"
           className="p-4 my-auto w-[560px] h-10 border border-gray-300 rounded-l-full"
+          onChange={(e) => setInputSerch(e.target.value)}
+          onFocus={() => setHideSearchDiv(true)}
+          onBlur={() => setHideSearchDiv(false)}
         ></input>
         <button className="">
           <svg
@@ -66,9 +89,40 @@ const Head = () => {
               d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"
             />
           </svg>
+          {hideSearchDiv && (
+            <div className="absolute top-[60px] left-[170px] w-[600px] bg-white border border-gray-200 rounded-xl shadow-lg z-10">
+              <ul>
+                {searchValue.map((suggestion, index) => (
+                  <li
+                    className="text-left px-2 py-[7px] flex hover:bg-gray-100"
+                    key={index}
+                  >
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        focusable="false"
+                        className="pointer-events-none size-4 text-center mt-1 ml-2"
+                      >
+                        <path
+                          clipRule="evenodd"
+                          d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z"
+                          fillRule="evenodd"
+                        ></path>
+                      </svg>
+                    </span>
+                    <span className="ml-2">{suggestion}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
-      <div className="flex justify-end text-center gap-4 col-span-4">
+      <div className="flex justify-end text-center gap-4 col-span-3">
         <div className="my-auto">
           <button className="flex bg-gray-100 p-[8px] rounded-full">
             <svg
